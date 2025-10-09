@@ -25,9 +25,10 @@ public struct LocalizedString: Content {
         self.comment = comment
     }
     
-    public mutating func postProcessed(_ postProcessor: @escaping (String) -> Content) -> Self {
-        self.postProcessor = postProcessor
-        return self
+    public func postProcessed(_ postProcessor: @escaping (String) -> Content) -> Self {
+        var ret = self
+        ret.postProcessor = postProcessor
+        return ret
     }
     
 }
