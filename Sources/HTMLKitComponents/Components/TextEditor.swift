@@ -52,7 +52,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
     ///   - name: The name to assign to the field.
     ///   - prompt: The key of the localized string to guide the user.
     ///   - value: The value to edit within the field.
-    public init(name: String, prompt: LocalizedStringKey? = nil, @ContentBuilder<String> content: () -> [String]) {
+    public init(name: String, prompt: LocalizedString? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
         self.prompt = prompt.map(PromptType.value(_:))

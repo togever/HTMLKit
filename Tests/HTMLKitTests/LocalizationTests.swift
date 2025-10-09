@@ -16,7 +16,7 @@ final class LocalizationTests: XCTestCase {
     /// The test expects the key to exist in the default translation table and to be rendered correctly.
     func testLocalization() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world")), "Hello World")
+        XCTAssertEqual(try localization!.localize(string: .init("hello.world", tableName: "web", comment: "")), "Hello World")
     }
     
     /// Tests the localization of a translation key in a specified translation table
@@ -24,30 +24,7 @@ final class LocalizationTests: XCTestCase {
     /// The test expects the key to exist in the specified translation table and to be rendered accurately.
     func testLocalizationWithTable() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world", table: "web")), "Hello World")
-    }
-    
-    /// Tests the localization of string interpolation
-    ///
-    /// The test expects the key to exist in the default translation table and to be correctly formatted
-    /// and rendered accurately.
-    func testLocalizationWithStringInterpolation() throws {
-        
-        XCTAssertEqual(try localization!.localize(string: .init(key: "String: \("John Doe")")), "String: John Doe")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Integer: \(31)")), "Integer: 31")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Double: \(12.5)")), "Double: 12.5")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Date: \(Date(timeIntervalSince1970: 50000))")), "Date: 01/01/1970")
-    }
-    
-    /// Tests the localization of string interpolation with multiple arguments and various data types
-    ///
-    /// The test expects the key to exist in the default translation table, to be correctly formatted
-    /// with the arguments in the proper order, and to be rendered accurately.
-    func testStringInterpolationWithMultipleArguments() throws {
-        
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Hello \("Jane") and \("John Doe")")), "Hello Jane and John Doe")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Do you \(2) have time at \(Date(timeIntervalSince1970: 50000))?")), "Do you 2 have time at 01/01/1970?")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "cheers.person \("Jean")")), "Cheers Jean")
+        XCTAssertEqual(try localization!.localize(string: .init("hello.world", tableName: "web", comment: "")), "Hello World")
     }
     
     /// Tests the behavior when a localization key is missing
@@ -56,7 +33,7 @@ final class LocalizationTests: XCTestCase {
     /// the localization is expected to throw an error.
     func testMissingKey() throws {
         
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "unknown.key")), "unknown.key") { error in
+        XCTAssertThrowsError(try localization!.localize(string: .init("unknown.key", tableName: "web", comment: "")), "unknown.key") { error in
             
             guard let localizationError = error as? Localization.Errors else {
                 return XCTFail("Unexpected error type: \(error)")
@@ -73,7 +50,7 @@ final class LocalizationTests: XCTestCase {
     /// the localization is expected to throw an error.
     func testMissingTable() throws {
         
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world"), for: .init(tag: "unknown.tag"))) { error in
+        XCTAssertThrowsError(try localization!.localize(string: .init("hello.world", comment: ""), for: .init(tag: "unknown.tag"))) { error in
             
             guard let localizationError = error as? Localization.Errors else {
                 return XCTFail("Unexpected error type: \(error)")
@@ -90,7 +67,7 @@ final class LocalizationTests: XCTestCase {
     /// the localization is expected to throw an error.
     func testUnknownTable() throws {
         
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world", table: "unknown.table"))) { error in
+        XCTAssertThrowsError(try localization!.localize(string: .init("hello.world", tableName: "unknown.table", comment: ""))) { error in
             
             guard let localizationError = error as? Localization.Errors else {
                 return XCTFail("Unexpected error type: \(error)")

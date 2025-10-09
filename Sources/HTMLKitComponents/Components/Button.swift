@@ -44,10 +44,10 @@ public struct Button: View, Modifiable, Actionable {
     /// - Parameters:
     ///   - localizedStringKey: The key of the localized string used as a label.
     ///   - role: The role of the button.
-    public init(_ localizedStringKey: LocalizedStringKey, role: HTMLKit.Values.Button) {
+    public init(_ localizedString: LocalizedString, role: HTMLKit.Values.Button) {
         
         self.role = role
-        self.content = [LocalizedString(key: localizedStringKey)]
+        self.content = [localizedString]
         self.classes = ["button"]
     }
     

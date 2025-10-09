@@ -14,7 +14,7 @@ public enum DynamicType {
 internal enum PromptType {
     
     /// Holds a key for the localized string.
-    case value(LocalizedStringKey)
+    case value(LocalizedString)
     
     /// Holds a string.
     case string(String)

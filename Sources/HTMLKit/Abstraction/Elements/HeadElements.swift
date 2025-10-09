@@ -172,8 +172,8 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Title {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Title {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Title {
@@ -386,8 +386,8 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Base {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Base {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Base {
@@ -607,8 +607,8 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meta {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Meta {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Meta {
@@ -633,8 +633,8 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(content: value)
     }
     
-    public func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meta {
-        return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+    public func content(_ localizedString: LocalizedString) -> Meta {
+        return mutate(content: localizedString)
     }
     
     public func content(verbatim value: String) -> Meta {
@@ -855,8 +855,8 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Style {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Style {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Style {
@@ -1095,8 +1095,8 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Link {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Link {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Link {

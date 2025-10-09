@@ -148,8 +148,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
-        func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return self.mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        func title(_ localizedString: LocalizedString) -> Tag {
+            return self.mutate(title: localizedString)
         }
         
         func title(verbatim value: String) -> Tag {
@@ -173,8 +173,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(alternate: value)
         }
         
-        func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+        func alternate(_ localizedString: LocalizedString) -> Tag {
+            return mutate(alternate: localizedString)
         }
         
         func alternate(verbatim value: String) -> Tag {
@@ -231,8 +231,8 @@ final class AttributesTests: XCTestCase {
             return mutate(content: value)
         }
         
-        func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+        func content(_ localizedString: LocalizedString) -> Tag {
+            return mutate(content: localizedString)
         }
         
         func content(verbatim value: String) -> Tag {
@@ -410,8 +410,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(placeholder: value)
         }
         
-        func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return self.mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+        func placeholder(_ localizedString: LocalizedString) -> Tag {
+            return self.mutate(placeholder: localizedString)
         }
         
         func placeholder(verbatim value: String) -> Tag {
@@ -550,8 +550,8 @@ final class AttributesTests: XCTestCase {
             return mutate(value: value)
         }
         
-        func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+        func value(_ localizedString: LocalizedString) -> Tag {
+            return mutate(value: localizedString)
         }
         
         func value(verbatim value: String) -> Tag {

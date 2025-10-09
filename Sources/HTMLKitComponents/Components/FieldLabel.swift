@@ -38,12 +38,12 @@ public struct FieldLabel: View {
     /// Create a field label.
     ///
     /// - Parameters:
-    ///   - localizedStringKey: The key of the localized string to look for.
+    ///   - localizedString: The localized string to look for.
     ///   - id: The identifier of the field to associate the label with.
-    public init(_ localizedStringKey: LocalizedStringKey, for id: String) {
+    public init(_ localizedString: LocalizedString, for id: String) {
         
         self.id = id
-        self.content = [LocalizedString(key: localizedStringKey)]
+        self.content = [localizedString]
         self.classes = ["label"]
     }
     

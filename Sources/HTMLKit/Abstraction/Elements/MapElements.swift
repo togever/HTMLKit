@@ -174,8 +174,8 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Area {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Area {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Area {
@@ -200,8 +200,8 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(alternate: value)
     }
     
-    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Area {
-        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    public func alternate(_ localizedString: LocalizedString) -> Area {
+        return mutate(alternate: localizedString)
     }
     
     public func alternate(verbatim value: String) -> Area {

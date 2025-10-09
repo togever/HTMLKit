@@ -62,7 +62,7 @@ final class ProviderTests: XCTestCase {
             
             var body: HTMLKit.Content {
                 MainView {
-                    Paragraph("hello.world")
+                    Paragraph(LocalizedString("hello.world", tableName: "web", comment: ""))
                 }
             }
         }

@@ -103,9 +103,7 @@ public struct Renderer {
     ///
     /// - Returns: A string representation of the content
     private func render(contents: [Content], on result: inout String) throws {
-        
         for content in contents {
-            
             switch content {
             case let content as [Content]:
                 try render(contents: content, on: &result)
@@ -144,7 +142,6 @@ public struct Renderer {
                 result += try render(localized: string)
                 
             case let string as MarkdownString:
-                
                 if !features.contains(.markdown) {
                     result += escape(content: string.raw)
                     
@@ -279,30 +276,27 @@ public struct Renderer {
     ///
     /// - Returns: The string representation
     private func render(localized string: LocalizedString) throws -> String {
-        
         guard let localization = localization else {
             // Bail early with the fallback since the localization is not in use
-            return string.key.literal
+            return string.key
         }
         
         if !localization.isConfigured {
             // Bail early, since the localization is not properly configured
-            return string.key.literal
+            return string.key
         }
         
         do {
-            
-            return try localization.localize(string: string, for: environment.locale)
+            var rendered = ""
+            try render(contents: [string.postProcessor(localization.localize(string: string, for: environment.locale))], on: &rendered)
+            return rendered
             
         } catch let error as Localization.Errors {
-            
             logger.warning("\(error.description)")
             
             switch error {
             case .missingKey:
-                
                 if environment.locale != nil {
-                    
                     logger.debug("Trying to recover from missing key")
                     
                     return try localization.recover(from: error, with: string)
@@ -311,7 +305,6 @@ public struct Renderer {
                 fallthrough
                 
             case .missingTable:
-                
                 logger.debug("Trying to recover from missing table")
                 
                 // Clear the locale on the environment, since it cannot be used for the remainder of the rendering,
@@ -321,7 +314,7 @@ public struct Renderer {
                 return try localization.recover(from: error, with: string)
                 
             default:
-                return string.key.literal
+                return string.key
             }
         }
     }
@@ -416,7 +409,6 @@ public struct Renderer {
     ///
     /// - Returns: The string representation
     private func render(attributes: OrderedDictionary<String, Any>, on result: inout String) throws {
-        
         for attribute in attributes {
             
             result += " \(attribute.key)=\""
@@ -479,9 +471,7 @@ public struct Renderer {
     ///   - value: The value to resolve the environment value with
     ///   - result: The rendered content
     private func render(loop contents: [Content], with value: Any, on result: inout String) throws {
-        
         for content in contents {
-            
             switch content {
             case let element as any ContentNode:
                 try render(loop: element, with: value, on: &result)

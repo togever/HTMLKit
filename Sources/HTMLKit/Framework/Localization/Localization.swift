@@ -54,16 +54,12 @@ public class Localization {
                 return "Unable to load data."
             }
         }
+        
     }
     
     /// Indicates whether the localization is properly configured
     internal var isConfigured: Bool {
-        
-        if self.tables != nil && self.locale != nil {
-            return true
-        }
-        
-        return false
+        return tables != nil && locale != nil
     }
     
     /// The translations tables
@@ -109,26 +105,19 @@ public class Localization {
     ///
     /// - Returns: The translation tables mapped to their locale
     private func load(source: URL) -> [Locale: [TranslationTable]] {
-        
         var localizationTables = [Locale: [TranslationTable]]()
         
         if let enumerator = FileManager.default.enumerator(at: source, includingPropertiesForKeys: nil) {
-            
             for case let path as URL in enumerator {
-                
                 if !path.hasDirectoryPath {
-                    
                     if !path.isFileURL {
                         enumerator.skipDescendants()
                         
                     } else {
-                        
-                        let locale = Locale(tag: path.deletingPathExtension().deletingLastPathComponent().lastPathComponent)
+                        let locale = Locale(tag: path.deletingLastPathComponent().lastPathComponent)
                         
                         if var translationTables = localizationTables[locale] {
-                            
                             if let data = try? Foundation.Data(contentsOf: path) {
-                                
                                 if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
                                     translationTables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
                                 }
@@ -147,56 +136,6 @@ public class Localization {
         return localizationTables
     }
     
-    /// Replace the value with the placeholder
-    ///
-    /// - Parameters:
-    ///   - placeholder: The placeholder to be replaced in
-    ///   - value: The value to replace the placeholder with
-    ///   - translation: The string in which the replacement will occur
-    private func replace(placeholder: String, with value: String, on translation: inout String) {
-        
-        if let range = translation.range(of: placeholder) {
-            translation = translation.replacingCharacters(in: range, with: value)
-        }
-    }
-    
-    /// Apply interpolation values to the translation for the given locale
-    ///
-    /// - Parameters:
-    ///   - arguments: The arguments to replace the placeholders with
-    ///   - translation: The string in which the interpolation will occur
-    ///   - locale: The locale to respect during interpolation
-    private func interpolate(arguments: [InterpolationArgument], to translation: inout String, for locale: Locale) {
-        
-        for argument in arguments {
-            
-            switch argument {
-            case .int(let int):
-                
-                replace(placeholder: argument.placeholder, with: String(int), on: &translation)
-                
-            case .string(let string):
-                
-                replace(placeholder: argument.placeholder, with: string, on: &translation)
-                
-            case .double(let double):
-                
-                replace(placeholder: argument.placeholder, with: String(double), on: &translation)
-                
-            case .float(let float):
-                
-                replace(placeholder: argument.placeholder, with: String(float), on: &translation)
-                
-            case .date(let date):
-                
-                let formatter = DateFormatter()
-                formatter.dateFormat = locale.dateFormat
-                
-                replace(placeholder: argument.placeholder, with: formatter.string(from: date), on: &translation)
-            }
-        }
-    }
-    
     /// Retrieves the translation for a specified key
     ///
     /// - Parameters:
@@ -205,7 +144,6 @@ public class Localization {
     ///
     /// - Returns: The translation
     public func localize(string: LocalizedString, for locale: Locale? = nil) throws -> String {
-        
         guard let fallback = self.locale else {
             throw Errors.noFallback
         }
@@ -220,37 +158,16 @@ public class Localization {
             throw Errors.missingTable(currentLocale.tag)
         }
         
-        if let table = string.table {
-            
-            guard let translationTable = translationTables.first(where: { $0.name == table }) else {
-                throw Errors.unknownTable(table, currentLocale.tag)
-            }
-            
-            guard var translation = translationTable.retrieve(for: string.key.value) else {
-                throw Errors.missingKey(string.key.value, currentLocale.tag)
-            }
-        
-            if let interpolation = string.key.interpolation {
-                interpolate(arguments: interpolation, to: &translation, for: currentLocale)
-            }
-            
-            return translation
-            
+        let table = string.tableName ?? "Localizable"
+        guard let translationTable = translationTables.first(where: { $0.name == table }) else {
+            throw Errors.unknownTable(table, currentLocale.tag)
         }
         
-        for translationTable in translationTables {
-            
-            if var translation = translationTable.retrieve(for: string.key.value) {
-                
-                if let interpolation = string.key.interpolation {
-                    interpolate(arguments: interpolation, to: &translation, for: currentLocale)
-                }
-                
-                return translation
-            }
+        guard let translation = translationTable.retrieve(for: string.key) else {
+            throw Errors.missingKey(string.key, currentLocale.tag)
         }
-        
-        throw Errors.missingKey(string.key.value, currentLocale.tag)
+    
+        return translation
     }
     
     /// Recovers from an error.
@@ -261,13 +178,10 @@ public class Localization {
     ///
     /// - Returns: The translation or the string literal
     internal func recover(from priorError: Errors, with string: LocalizedString) throws -> String {
-        
         do {
-            
             return try localize(string: string)
             
         } catch let error as Errors {
-            
             switch error {
             case .missingKey where error != priorError:
                 return try recover(from: error, with: string)
@@ -276,8 +190,9 @@ public class Localization {
                 return try recover(from: error, with: string)
                 
             default:
-                return string.key.literal
+                return string.key
             }
         }
     }
+    
 }

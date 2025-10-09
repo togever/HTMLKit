@@ -3,21 +3,31 @@ import Foundation
 /// A type thats holds the information for the localization
 @_documentation(visibility: internal)
 public struct LocalizedString: Content {
-
+    
     /// The key of the translation value
-    internal let key: LocalizedStringKey
+    public let key: String
     
     /// The name of the translation table
-    internal let table: String?
+    public let tableName: String?
     
-    /// Initializes a localized string with context
-    ///
-    /// - Parameters:
-    ///   - key: The string key to be translated
-    ///   - table: The table where the string key should be looked up. Default is nil.
-    public init(key: LocalizedStringKey, table: String? = nil) {
-        
+    /// The default value for the translation if none is found in the table
+    public let value: String
+    
+    /// The default value for the translation if none is found in the table
+    public let comment: String
+    
+    public var postProcessor: (_ localizedValue: String) -> Content = { $0 }
+    
+    public init(_ key: String, tableName: String? = nil, value: String = "", comment: String) {
         self.key = key
-        self.table = table
+        self.tableName = tableName
+        self.value = value
+        self.comment = comment
     }
+    
+    public mutating func postProcessed(_ postProcessor: @escaping (String) -> Content) -> Self {
+        self.postProcessor = postProcessor
+        return self
+    }
+    
 }

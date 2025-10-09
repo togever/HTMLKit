@@ -50,11 +50,11 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     /// - Parameters:
     ///   - localizedStringKey: The key of the localized string used as the label.
     ///   - value: The current value of the select.
-    public init(_ localizedStringKey: LocalizedStringKey, value: String) {
+    public init(_ localizedString: LocalizedString, value: String) {
         
         self.value = value
         self.isSelected = false
-        self.content = [LocalizedString(key: localizedStringKey)]
+        self.content = [localizedString]
         self.classes = ["radioselect"]
     }
     

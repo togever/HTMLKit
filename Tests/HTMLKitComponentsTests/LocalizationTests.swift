@@ -20,7 +20,7 @@ final class LocalizationTests: XCTestCase {
     func testTextLocalization() throws {
         
         let view = TestView {
-            Text("button.submit")
+            Text(LocalizedString("button.submit", comment: ""))
                 .bold()
                 .foregroundColor(.red)
         }
@@ -35,7 +35,7 @@ final class LocalizationTests: XCTestCase {
     func testFieldLabelLocalization() throws {
         
         let view = TestView {
-            FieldLabel("Password", for: "password")
+            FieldLabel(LocalizedString("Password", comment: ""), for: "password")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
@@ -48,7 +48,7 @@ final class LocalizationTests: XCTestCase {
     func testDisclosureLocalization() throws {
         
         let view = TestView {
-            Disclosure("Forgot password?") {
+            Disclosure(LocalizedString("Forgot password?", comment: "")) {
             }
         }
         
@@ -74,7 +74,7 @@ final class LocalizationTests: XCTestCase {
     func testCheckFieldLocalization() throws {
         
         let view = TestView {
-            CheckField("Password", value: "password")
+            CheckField(LocalizedString("Password", comment: ""), value: "password")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
@@ -90,7 +90,7 @@ final class LocalizationTests: XCTestCase {
     func testRadioSelectLocalization() throws {
         
         let view = TestView {
-            RadioSelect("Password", value: "password")
+            RadioSelect(LocalizedString("Password", comment: ""), value: "password")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
@@ -106,7 +106,7 @@ final class LocalizationTests: XCTestCase {
     func testButtonLocalization() throws {
         
         let view = TestView {
-            Button("Create", role: .submit)
+            Button(LocalizedString("Create", comment: ""), role: .submit)
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
@@ -119,7 +119,7 @@ final class LocalizationTests: XCTestCase {
     func testLinkLocalization() throws {
         
         let view = TestView {
-            LinkButton("Create", destination: "#")
+            LinkButton(LocalizedString("Create", comment: ""), destination: "#")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
@@ -132,7 +132,7 @@ final class LocalizationTests: XCTestCase {
     func testPromptLocalization() throws {
         
         let view = TestView {
-            TextField(name: "password", prompt: "Password")
+            TextField(name: "password", prompt: LocalizedString("Password", comment: ""))
         }
         
         XCTAssertEqual(try renderer!.render(view: view),

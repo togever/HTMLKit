@@ -179,8 +179,8 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> FigureCaption {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> FigureCaption {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> FigureCaption {

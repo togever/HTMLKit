@@ -59,7 +59,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     ///   - prompt: The key of the localized string to guide the user.
     ///   - selection: The option to preselect.
     ///   - content: The options to choose from.
-    public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
+    public init(name: String, prompt: LocalizedString? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
         
         self.name = name
         self.prompt = prompt.map(PromptType.value(_:))
@@ -92,7 +92,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     ///   - prompt: The prompt to guide the user.
     ///   - selection: The option to preselect.
     ///   - content: The options to choose from.
-    public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
+    public init(name: String, prompt: LocalizedString? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
         
         self.name = name
         self.prompt = prompt.map(PromptType.value(_:))

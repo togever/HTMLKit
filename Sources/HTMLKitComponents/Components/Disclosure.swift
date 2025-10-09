@@ -40,9 +40,9 @@ public struct Disclosure: View, Modifiable {
     /// - Parameters:
     ///   - label: The key of the localized string to describe the content.
     ///   - content: The disclosure's content.
-    public init(_ label: LocalizedStringKey, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(_ label: LocalizedString, @ContentBuilder<Content> content: () -> [Content]) {
         
-        self.label = LocalizedString(key: label)
+        self.label = label
         self.content = content()
         self.classes = ["disclosure"]
     }

@@ -50,11 +50,11 @@ public struct LinkButton: View, Modifiable, Identifiable {
     ///   - localizedStringKey: The key of the localized string used as the label.
     ///   - destination: The url of the target to navigate to.
     ///   - target: The behaviour that determines how to open the target.
-    public init(_ localizedStringKey: LocalizedStringKey, destination: String, target: HTMLKit.Values.Target = .current) {
+    public init(_ localizedString: LocalizedString, destination: String, target: HTMLKit.Values.Target = .current) {
         
         self.destination = destination
         self.target = target
-        self.content = [LocalizedString(key: localizedStringKey)]
+        self.content = [localizedString]
         self.classes = ["button"]
     }
     
@@ -78,11 +78,11 @@ public struct LinkButton: View, Modifiable, Identifiable {
     ///   - localizedStringKey: The key of the localized string used as the label.
     ///   - destination: The url of the target to navigate to.
     ///   - target: The behaviour that determines how to open the target.
-    public init(_ localizedStringKey: LocalizedStringKey, destination: URL, target: HTMLKit.Values.Target = .current) {
+    public init(_ localizedString: LocalizedString, destination: URL, target: HTMLKit.Values.Target = .current) {
         
         self.destination = destination.absoluteString
         self.target = target
-        self.content = [LocalizedString(key: localizedStringKey)]
+        self.content = [localizedString]
         self.classes = ["button"]
     }
     

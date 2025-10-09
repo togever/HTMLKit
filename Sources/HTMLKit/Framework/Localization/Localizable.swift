@@ -7,5 +7,5 @@ public protocol Localizable {
     /// - Parameters:
     ///   - localizedKey: The string key to be translated
     ///   - tableName: The name of the translation table
-    init(_ localizedKey: LocalizedStringKey, tableName: String?)
+    init(_ localizedString: LocalizedString)
 }

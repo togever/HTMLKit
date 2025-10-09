@@ -48,7 +48,7 @@ public struct SecureField: View, Modifiable, Identifiable {
     ///   - name: The name to assign to the field.
     ///   - prompt: The key of the localized string to guide the user.
     ///   - content: The text content to edit within the field.
-    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+    public init(name: String, prompt: LocalizedString? = nil, value: String? = nil) {
         
         self.name = name
         self.prompt = prompt.map(PromptType.value(_:))

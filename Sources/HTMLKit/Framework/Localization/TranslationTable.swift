@@ -28,4 +28,5 @@ internal struct TranslationTable {
     internal func retrieve(for key: String) -> String? {
         return translations[key]
     }
+    
 }

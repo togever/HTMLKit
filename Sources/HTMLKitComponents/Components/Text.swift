@@ -39,9 +39,9 @@ public struct Text: View, Actionable, Modifiable {
     /// - Parameters:
     ///   - localizedStringKey: The string key to look for.
     ///   - alignment: The direction to align the text to.
-    public init(_ localizedStringKey: LocalizedStringKey, alignment: Tokens.TextAlignment = .leading) {
+    public init(_ localizedString: LocalizedString, alignment: Tokens.TextAlignment = .leading) {
         
-        self.content = [LocalizedString(key: localizedStringKey)]
+        self.content = [localizedString]
         self.classes = ["text", "alignment:\(alignment.value)"]
     }
     

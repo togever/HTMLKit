@@ -319,8 +319,8 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Article {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Article {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Article {
@@ -619,8 +619,8 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Section {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Section {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Section {
@@ -921,8 +921,8 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Navigation {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Navigation {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Navigation {
@@ -1219,8 +1219,8 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Aside {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Aside {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Aside {
@@ -1514,8 +1514,8 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading1 {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Heading1 {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Heading1 {
@@ -1642,9 +1642,10 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading1: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
+    
 }
 
 /// An element that represents a text heading.
@@ -1816,8 +1817,8 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading2 {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Heading2 {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Heading2 {
@@ -1944,8 +1945,8 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading2: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -2118,8 +2119,8 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading3 {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Heading3 {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Heading3 {
@@ -2246,8 +2247,8 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading3: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -2420,8 +2421,8 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading4 {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Heading4 {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Heading4 {
@@ -2548,8 +2549,8 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading4: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -2722,8 +2723,8 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading5 {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Heading5 {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Heading5 {
@@ -2850,8 +2851,8 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading5: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -3024,8 +3025,8 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading6 {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Heading6 {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Heading6 {
@@ -3152,8 +3153,8 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading6: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -3331,8 +3332,8 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HeadingGroup {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> HeadingGroup {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> HeadingGroup {
@@ -3627,8 +3628,8 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Header {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Header {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Header {
@@ -3921,8 +3922,8 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Footer {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Footer {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Footer {
@@ -4222,8 +4223,8 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Address {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Address {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Address {
@@ -4517,8 +4518,8 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Paragraph {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Paragraph {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Paragraph {
@@ -4645,8 +4646,8 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
 extension Paragraph: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -4816,8 +4817,8 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HorizontalRule {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> HorizontalRule {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> HorizontalRule {
@@ -5117,8 +5118,8 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> PreformattedText {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> PreformattedText {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> PreformattedText {
@@ -5412,8 +5413,8 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Blockquote {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Blockquote {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Blockquote {
@@ -5544,8 +5545,8 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
 extension Blockquote: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -5723,8 +5724,8 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OrderedList {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> OrderedList {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> OrderedList {
@@ -6035,8 +6036,8 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> UnorderedList {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> UnorderedList {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> UnorderedList {
@@ -6341,8 +6342,8 @@ extension Menu: GlobalAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Menu {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Menu {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Menu {
@@ -6547,8 +6548,8 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DescriptionList {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> DescriptionList {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> DescriptionList {
@@ -6847,8 +6848,8 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Figure {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Figure {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Figure {
@@ -7144,8 +7145,8 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Anchor {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Anchor {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Anchor {
@@ -7308,8 +7309,8 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
 extension Anchor: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -7486,8 +7487,8 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Emphasize {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Emphasize {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Emphasize {
@@ -7783,8 +7784,8 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Strong {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Strong {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Strong {
@@ -8080,8 +8081,8 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Small {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Small {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Small {
@@ -8208,8 +8209,8 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
 extension Small: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -8384,8 +8385,8 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> StrikeThrough {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> StrikeThrough {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> StrikeThrough {
@@ -8436,8 +8437,8 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
 
 extension StrikeThrough: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -8620,8 +8621,8 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Main {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Main {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Main {
@@ -8922,8 +8923,8 @@ extension Search: GlobalAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Search {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Search {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Search {
@@ -9121,8 +9122,8 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Division {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Division {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Division {
@@ -9421,8 +9422,8 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Definition {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Definition {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Definition {
@@ -9719,8 +9720,8 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Cite {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Cite {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Cite {
@@ -10016,8 +10017,8 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ShortQuote {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> ShortQuote {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> ShortQuote {
@@ -10318,8 +10319,8 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Abbreviation {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Abbreviation {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Abbreviation {
@@ -10616,8 +10617,8 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Ruby {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Ruby {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Ruby {
@@ -10916,8 +10917,8 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Data {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Data {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Data {
@@ -10942,8 +10943,8 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(value: value)
     }
     
-    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Data {
-        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    public func value(_ localizedString: LocalizedString) -> Data {
+        return mutate(value: localizedString)
     }
     
     public func value(verbatim value: String) -> Data {
@@ -11228,8 +11229,8 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Time {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Time {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Time {
@@ -11531,8 +11532,8 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Code {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Code {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Code {
@@ -11830,8 +11831,8 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Variable {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Variable {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Variable {
@@ -12125,8 +12126,8 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> SampleOutput {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> SampleOutput {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> SampleOutput {
@@ -12424,8 +12425,8 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> KeyboardInput {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> KeyboardInput {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> KeyboardInput {
@@ -12722,8 +12723,8 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Subscript {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Subscript {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Subscript {
@@ -13021,8 +13022,8 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Superscript {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Superscript {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Superscript {
@@ -13320,8 +13321,8 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Italic {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Italic {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Italic {
@@ -13448,8 +13449,8 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 
 extension Italic: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -13626,8 +13627,8 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bold {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Bold {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Bold {
@@ -13754,8 +13755,8 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
 extension Bold: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -13932,8 +13933,8 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Underline {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Underline {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Underline {
@@ -14060,8 +14061,8 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
 extension Underline: Localizable {
     
-    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
-        self.content = [LocalizedString(key: localizedKey, table: tableName)]
+    public init(_ localizedString: LocalizedString) {
+        self.content = [localizedString]
     }
 }
 
@@ -14238,8 +14239,8 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Mark {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Mark {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Mark {
@@ -14537,8 +14538,8 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bdi {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Bdi {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Bdi {
@@ -14830,8 +14831,8 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bdo {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Bdo {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Bdo {
@@ -15125,8 +15126,8 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Span {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Span {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Span {
@@ -15411,8 +15412,8 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> LineBreak {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> LineBreak {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> LineBreak {
@@ -15701,8 +15702,8 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> WordBreak {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> WordBreak {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> WordBreak {
@@ -15996,8 +15997,8 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> InsertedText {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> InsertedText {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> InsertedText {
@@ -16299,8 +16300,8 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DeletedText {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> DeletedText {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> DeletedText {
@@ -16607,8 +16608,8 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Picture {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Picture {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Picture {
@@ -16828,8 +16829,8 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Image {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Image {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Image {
@@ -16854,8 +16855,8 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(alternate: value)
     }
     
-    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Image {
-        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    public func alternate(_ localizedString: LocalizedString) -> Image {
+        return mutate(alternate: localizedString)
     }
     
     public func alternate(verbatim value: String) -> Image {
@@ -17181,8 +17182,8 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> InlineFrame {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> InlineFrame {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> InlineFrame {
@@ -17513,8 +17514,8 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Embed {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Embed {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Embed {
@@ -17829,8 +17830,8 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Object {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Object {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Object {
@@ -18150,8 +18151,8 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Video {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Video {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Video {
@@ -18510,8 +18511,8 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Audio {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Audio {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Audio {
@@ -18851,8 +18852,8 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Map {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Map {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Map {
@@ -19080,8 +19081,8 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Form {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Form {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Form {
@@ -19424,8 +19425,8 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DataList {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> DataList {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> DataList {
@@ -19721,8 +19722,8 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Output {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Output {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Output {
@@ -20030,8 +20031,8 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Progress {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Progress {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Progress {
@@ -20060,8 +20061,8 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(value: value)
     }
     
-    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Progress {
-        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    public func value(_ localizedString: LocalizedString) -> Progress {
+        return mutate(value: localizedString)
     }
     
     public func value(verbatim value: String) -> Progress {
@@ -20346,8 +20347,8 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meter {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Meter {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Meter {
@@ -20392,8 +20393,8 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(value: value)
     }
     
-    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meter {
-        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    public func value(_ localizedString: LocalizedString) -> Meter {
+        return mutate(value: localizedString)
     }
     
     public func value(verbatim value: String) -> Meter {
@@ -20679,8 +20680,8 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Details {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Details {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Details {
@@ -20987,8 +20988,8 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Dialog {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Dialog {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Dialog {
@@ -21302,8 +21303,8 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Script {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Script {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Script {
@@ -21551,8 +21552,8 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> NoScript {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> NoScript {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> NoScript {
@@ -21777,8 +21778,8 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Template {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Template {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Template {
@@ -21996,8 +21997,8 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Canvas {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Canvas {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Canvas {
@@ -22306,8 +22307,8 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Table {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Table {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Table {
@@ -22740,8 +22741,8 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(title: value)
     }
     
-    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Slot {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    public func title(_ localizedString: LocalizedString) -> Slot {
+        return mutate(title: localizedString)
     }
     
     public func title(verbatim value: String) -> Slot {

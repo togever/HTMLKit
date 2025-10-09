@@ -400,7 +400,7 @@ final class RenderingTests: XCTestCase {
         struct MainView: View {
             
             var body: Content {
-                Heading1("hello.world")
+                Heading1(LocalizedString("hello.world", tableName: "web", comment: ""))
             }
         }
         
@@ -422,12 +422,12 @@ final class RenderingTests: XCTestCase {
             
             var body: Content {
                 Input()
-                    .placeholder("hello.world", tableName: nil)
-                    .alternate(LocalizedStringKey("hello.world"))
-                    .value(LocalizedStringKey("hello.world"), tableName: "web")
-                    .title("hello.world", tableName: "mobile")
+                    .placeholder(LocalizedString("hello.world", tableName: nil, comment: ""))
+                    .alternate(LocalizedString("hello.world", comment: ""))
+                    .value(LocalizedString("hello.world", tableName: "web", comment: ""))
+                    .title(LocalizedString("hello.world", tableName: "mobile", comment: ""))
                 Meta()
-                    .content("hello.world")
+                    .content(LocalizedString("hello.world", tableName: "web", comment: ""))
                 Input()
                     .placeholder(verbatim: "hello.world")
                     .alternate(verbatim: "hello.world")
@@ -440,7 +440,7 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <input placeholder="Hello World" alt="Hello World" value="Hello World" title="Hello World">\
+                       <input placeholder="hello.world" alt="hello.world" value="Hello World" title="Hello World">\
                        <meta content="Hello World">\
                        <input placeholder="hello.world" alt="hello.world" value="hello.world" title="hello.world">\
                        <textarea placeholder="hello.world"></textarea>
@@ -474,7 +474,7 @@ final class RenderingTests: XCTestCase {
             
             var body: Content {
                 MainView {
-                    Heading1("hello.world")
+                    Heading1(LocalizedString("hello.world", tableName: "web", comment: ""))
                         .environment(key: \.locale)
                 }
             }
@@ -489,46 +489,6 @@ final class RenderingTests: XCTestCase {
         )
     }
     
-    /// Tests the recovery from a missing key
-    ///
-    /// The renderer should attempt a secondary lookup in the translation tables of the default locale.
-    func testRecoveryFromMissingKey() throws {
-        
-        struct MainView: View {
-            
-            var content: [Content]
-            
-            init(@ContentBuilder<Content> content: () -> [Content]) {
-                self.content = content()
-            }
-            
-            var body: Content {
-                Division {
-                    content
-                }
-                .environment(key: \.locale, value: Locale(tag: .french))
-            }
-        }
-        
-        struct ChildView: View {
-            
-            var body: Content {
-                MainView {
-                    Heading1("Hello \("John Doe")")
-                        .environment(key: \.locale)
-                }
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: ChildView()),
-                       """
-                       <div>\
-                       <h1>Hello John Doe</h1>\
-                       </div>
-                       """
-        )
-    }
-    
     /// Tests the recovery from a missing table
     ///
     /// The renderer should fallback to the default locale.
@@ -538,7 +498,7 @@ final class RenderingTests: XCTestCase {
             
             var body: Content {
                 Division {
-                    Heading1("hello.world")
+                    Heading1(LocalizedString("hello.world", tableName: "mobile", comment: ""))
                         .environment(key: \.locale)
                 }
                 .environment(key: \.locale, value: Locale(tag: "unknown.tag"))
@@ -563,7 +523,7 @@ final class RenderingTests: XCTestCase {
             
             var body: Content {
                 Division {
-                    Heading1("hello.world", tableName: "unknown.table")
+                    Heading1(LocalizedString("hello.world", tableName: "unknown.table", comment: ""))
                 }
             }
         }
@@ -586,7 +546,7 @@ final class RenderingTests: XCTestCase {
             
             var body: Content {
                 Division {
-                    Heading1("unknown.key", tableName: "unknown.table")
+                    Heading1(LocalizedString("unknown.key", tableName: "unknown.table", comment: ""))
                 }
             }
         }

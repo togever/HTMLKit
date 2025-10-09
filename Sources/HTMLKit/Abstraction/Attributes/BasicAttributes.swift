@@ -140,7 +140,7 @@ public protocol AlternateAttribute: Attribute {
     /// - Parameter tableName: The translation table to look in.
     ///
     /// - Returns: The element
-    func alternate(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    func alternate(_ localizedString: LocalizedString) -> Self
     
     /// Provide an alternative information without localization.
     ///
@@ -603,7 +603,7 @@ public protocol ContentAttribute: Attribute {
     /// - Parameter tableName: The translation table to look in
     ///
     /// - Returns: The element
-    func content(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    func content(_ localizedString: LocalizedString) -> Self
     
     /// Supply a value to the associated name without localization
     ///
@@ -2591,7 +2591,7 @@ public protocol PlaceholderAttribute: Attribute {
     /// - Parameter tableName: The translation table to look in
     ///
     /// - Returns: The element
-    func placeholder(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    func placeholder(_ localizedString: LocalizedString) -> Self
     
     /// Supply a short hint without localization.
     ///
@@ -3590,7 +3590,7 @@ public protocol TitleAttribute: Attribute {
     /// - Parameter tableName: The translation table to look in.
     ///
     /// - Returns: The element
-    func title(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    func title(_ localizedString: LocalizedString) -> Self
     
     /// Supply extra information about the element without localization.
     ///
@@ -3759,7 +3759,7 @@ public protocol ValueAttribute: Attribute {
     /// - Parameter tableName: The translation table to look in
     ///
     /// - Returns: The element
-    func value(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    func value(_ localizedString: LocalizedString) -> Self
     
     /// Set a initial value for the element without localization.
     ///
