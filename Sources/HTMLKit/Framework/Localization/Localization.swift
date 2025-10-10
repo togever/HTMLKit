@@ -114,7 +114,7 @@ public class Localization {
                         enumerator.skipDescendants()
                         
                     } else {
-                        let locale = Locale(tag: path.deletingLastPathComponent().lastPathComponent)
+                        let locale = Locale(tag: path.deletingLastPathComponent().deletingPathExtension().lastPathComponent)
                         
                         if var translationTables = localizationTables[locale] {
                             if let data = try? Foundation.Data(contentsOf: path) {
@@ -128,7 +128,7 @@ public class Localization {
                     }
                     
                 } else {
-                    localizationTables[Locale(tag: path.lastPathComponent)] = [TranslationTable]()
+                    localizationTables[Locale(tag: path.deletingPathExtension().lastPathComponent)] = [TranslationTable]()
                 }
             }
         }
