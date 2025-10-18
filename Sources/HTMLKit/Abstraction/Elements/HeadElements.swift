@@ -18,16 +18,16 @@ public struct Title: ContentNode, HeadElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [String]
+    internal var content: [Content]
     
     /// Create a title.
     ///
     /// - Parameter content: The title's content.
-    public init(@ContentBuilder<String> content: () -> [String]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
