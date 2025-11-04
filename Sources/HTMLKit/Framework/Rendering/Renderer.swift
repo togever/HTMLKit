@@ -288,7 +288,7 @@ public struct Renderer {
         
         do {
             var rendered = ""
-            try render(contents: [string.postProcessor(localization.localize(string: string, for: environment.locale))], on: &rendered)
+            try render(contents: [string.postProcessor(localization.localize(string: string, for: environment.locale), localization, environment)], on: &rendered)
             return rendered
             
         } catch let error as Localization.Errors {
