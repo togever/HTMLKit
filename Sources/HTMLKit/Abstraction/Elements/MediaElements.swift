@@ -63,7 +63,12 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Source {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Source {
         return mutate(contenteditable: value)
     }
 
@@ -71,11 +76,21 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Source {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Source {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Source {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Source {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -88,7 +103,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Source {
         return mutate(inputmode: value)
     }
@@ -149,12 +164,17 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Source {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Source {
         return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Source {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func tabIndex(_ value: Int) -> Source {
@@ -174,8 +194,18 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Source {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Source {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Source {
@@ -199,16 +229,37 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(source: value)
     }
     
+    @available(*, deprecated, message: "Use the sourceSet(_:) modifier instead.")
     public func sourceSet(_ value: String) -> Source {
         return mutate(sourceset: value)
     }
     
-    public func sizes(_ size: Int) -> Source {
-        return mutate(sizes: size)
+    public func sourceSet(_ candidates: [SourceCandidate]) -> Source {
+        return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sourceSet(_ candidates: SourceCandidate...) -> Source {
+        return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sizes(_ candidates: [SizeCandidate]) -> Source {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sizes(_ candidates: SizeCandidate...) -> Source {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func media(_ value: String) -> Source {
         return mutate(media: value)
+    }
+    
+    public func media(_ queries: [MediaQuery]) -> Source {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Source {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func width(_ size: Int) -> Source {
@@ -228,23 +279,23 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
     
     public func on(event: Events.Drag, _ value: String) -> Source {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Source {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Source {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Source {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Source {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 }
 
@@ -313,7 +364,12 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Track {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Track {
         return mutate(contenteditable: value)
     }
 
@@ -321,11 +377,21 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Track {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Track {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Track {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Track {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -338,7 +404,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Track {
         return mutate(inputmode: value)
     }
@@ -399,12 +465,17 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Track {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Track {
         return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Track {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func tabIndex(_ value: Int) -> Track {
@@ -424,8 +495,18 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Track {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Track {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Track {
@@ -453,7 +534,16 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(sourcelanguage: value.rawValue)
     }
     
+    @_disfavoredOverload
     public func label(_ value: String) -> Track {
+        return mutate(label: value)
+    }
+    
+    public func label(_ localizedString: LocalizedString) -> Track {
+        return mutate(label: localizedString)
+    }
+    
+    public func label(verbatim value: String) -> Track {
         return mutate(label: value)
     }
     
@@ -470,22 +560,22 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     }
     
     public func on(event: Events.Drag, _ value: String) -> Track {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Track {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Track {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Track {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Track {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 }

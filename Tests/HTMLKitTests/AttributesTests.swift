@@ -15,7 +15,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -57,16 +57,16 @@ final class AttributesTests: XCTestCase {
         func direction(_ value: Values.Direction) -> Tag {
             return self.mutate(dir: value.rawValue)
         }
-        
-        func isDraggable(_ value: Bool) -> Tag {
+
+        func draggable(_ value: Bool = true) -> Tag {
             return self.mutate(draggable: value)
         }
         
-        func isEditable(_ value: Bool) -> Tag {
+        func editable(_ value: Bool = true) -> Tag {
             return self.mutate(contenteditable: value)
         }
         
-        func enterKeyHint(_ value: Values.Hint) -> Tag {
+        func enterKey(_ value: Values.Hint) -> Tag {
             return self.mutate(enterkeyhint: value.rawValue)
         }
         
@@ -131,12 +131,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(role: value.rawValue)
         }
         
-        func hasSpellCheck(_ value: Bool) -> Tag {
+        func spellcheck(_ value: Bool = true) -> Tag {
             return self.mutate(spellcheck: value)
         }
         
         func style(_ value: String) -> Tag {
-            return self.mutate(style: value)
+            return self.mutate(style: TaintedString(value, as: .css(.attribute)))
         }
         
         func tabIndex(_ value: Int) -> Tag {
@@ -156,12 +156,29 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
-        func translate(_ value: Values.Decision) -> Tag {
-            return self.mutate(translate: value.rawValue)
+        func translate(_ value: Bool = true) -> Tag {
+            
+            if value {
+                return self.mutate(translate: "yes")
+            }
+            
+            return self.mutate(translate: "no")
         }
         
-        func accept(_ value: String) -> Tag {
-            return self.mutate(accept: value)
+        func accept(_ specifiers: [String]) -> Tag {
+            return self.mutate(accept: specifiers.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: String...) -> Tag {
+            return self.mutate(accept: specifiers.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: [Values.Media]) -> Tag {
+            return self.mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: Values.Media...) -> Tag {
+            return self.mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func action(_ value: String) -> Tag {
@@ -296,8 +313,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(httpequiv: value.rawValue)
         }
         
-        func headers(_ value: String) -> Tag {
-            return self.mutate(headers: value)
+        func headers(_ ids: [String]) -> Tag {
+            return self.mutate(headers: ids.joined(separator: " "))
+        }
+        
+        func headers(_ ids: String...) -> Tag {
+            return self.mutate(headers: ids.joined(separator: " "))
         }
         
         func height(_ size: Int) -> Tag {
@@ -324,7 +345,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(kind: value.rawValue)
         }
         
+        @_disfavoredOverload
         func label(_ value: String) -> Tag {
+            return self.mutate(label: value)
+        }
+        
+        func label(_ localizedString: LocalizedString) -> Tag {
+            return self.mutate(label: localizedString)
+        }
+        
+        func label(verbatim value: String) -> Tag {
             return self.mutate(label: value)
         }
         
@@ -357,6 +387,14 @@ final class AttributesTests: XCTestCase {
             return self.mutate(media: value)
         }
         
+        func media(_ queries: [MediaQuery]) -> Tag {
+            return self.mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func media(_ queries: MediaQuery...) -> Tag {
+            return self.mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
         func method(_ value: HTMLKit.Values.Method) -> Tag {
             return self.mutate(method: value.rawValue)
         }
@@ -385,8 +423,13 @@ final class AttributesTests: XCTestCase {
             return self.mutate(novalidate: "novalidate")
         }
         
-        func isOpen(_ value: Bool) -> Tag {
-            return self.mutate(open: value)
+        func open(_ condition: Bool = true) -> Tag {
+
+            if condition {
+                return self.mutate(open: "open")
+            }
+            
+            return self
         }
         
         func optimum(_ value: Float) -> Tag {
@@ -489,16 +532,24 @@ final class AttributesTests: XCTestCase {
             return self.mutate(scope: value.rawValue)
         }
         
-        func shape(_ value: Values.Shape) -> Tag {
-            return self.mutate(shape: value.rawValue)
+        func shape() -> Tag {
+            return self.mutate(shape: "default")
+        }
+        
+        func shape(_ value: Values.Shape, coordinates: String) -> Tag {
+            return self.mutate(shape: value.rawValue).mutate(coords: coordinates)
         }
         
         func size(_ size: Int) -> Tag {
             return self.mutate(size: size)
         }
         
-        func sizes(_ size: Int) -> Tag {
-            return self.mutate(sizes: size)
+        func sizes(_ candidates: [SizeCandidate]) -> Tag {
+            return self.mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func sizes(_ candidates: SizeCandidate...) -> Tag {
+            return self.mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func slot(_ value: String) -> Tag {
@@ -525,8 +576,12 @@ final class AttributesTests: XCTestCase {
             return mutate(sourcelanguage: value.rawValue)
         }
         
-        func sourceSet(_ value: String) -> Tag {
-            return mutate(sourceset: value)
+        func sourceSet(_ candidates: [SourceCandidate]) -> Tag {
+            return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func sourceSet(_ candidates: SourceCandidate...) -> Tag {
+            return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func start(_ size: Int) -> Tag {
@@ -583,16 +638,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(draw: value)
         }
         
-        func fill(_ value: String) -> Tag {
-            return self.mutate(fill: value)
+        func fill(_ color: String, opacity: Double? = nil) -> Tag {
+            return self.mutate(fill: color).mutate(fillopacity: opacity)
         }
         
-        func fillOpacity(_ value: Double) -> Tag {
-            return self.mutate(fillopacity: value)
-        }
-        
-        func stroke(_ value: String) -> Tag {
-            return self.mutate(stroke: value)
+        public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Tag {
+            return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
         }
         
         func strokeWidth(_ size: Int) -> Tag {
@@ -616,19 +667,63 @@ final class AttributesTests: XCTestCase {
         }
         
         func positionPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(positionpoint: point)
+            return self.mutate(x: "\(point.0)").mutate(y: "\(point.1)")
+        }
+        
+        func position(x: Int, y: Int) -> Tag {
+            return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        }
+    
+        func position(x: Double, y: Double) -> Tag {
+            return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        }
+        
+        func position(_ point: UnitPoint) -> Tag {
+            return self.mutate(x: point.x).mutate(y: point.y)
         }
         
         func radiusPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(radiuspoint: point)
+            return self.mutate(rx: "\(point.0)").mutate(ry: "\(point.1)")
+        }
+        
+        func radius(x: Int, y: Int) -> Tag {
+            return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        }
+        
+        func radius(x: Double, y: Double) -> Tag {
+            return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        }
+        
+        func radius(_ point: HTMLKit.UnitPoint) -> Tag {
+            return self.mutate(rx: point.x).mutate(ry: point.y)
         }
         
         func centerPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(centerpoint: point)
+            return self.mutate(cx: "\(point.0)").mutate(cy: "\(point.1)")
+        }
+        
+        func center(x: Int, y: Int) -> Tag {
+            return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        }
+        
+        func center(x: Double, y: Double) -> Tag {
+            return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        }
+        
+        func center(_ point: UnitPoint) -> Tag {
+            return self.mutate(cx: point.x).mutate(cy: point.y)
         }
         
         func viewBox(_ value: String) -> Tag {
             return self.mutate(viewbox: value)
+        }
+        
+        func viewBox(x: Int, y: Int, width: Int, height: Int) -> Tag {
+            return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+        }
+        
+        func viewBox(x: Double, y: Double, width: Double, height: Double) -> Tag {
+            return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
         }
         
         func namespace(_ value: String) -> Tag {
@@ -655,8 +750,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(popover: value.rawValue)
         }
         
-        func popoverTarget(_ value: String) -> Tag {
-            return self.mutate(popovertarget: value)
+        func popoverTarget(_ id: String, action: Values.Popover.Action? = nil) -> Tag {
+            return self.mutate(popovertarget: id).mutate(popovertargetaction: action?.rawValue)
         }
         
         func popoverAction(_ value: Values.Popover.Action) -> Tag {
@@ -899,11 +994,15 @@ final class AttributesTests: XCTestCase {
     func testDraggableAttribute() throws {
         
         let view = TestView {
-            Tag {}.isDraggable(true)
+            Tag {}.draggable()
+            Tag {}.draggable(false)
+            Tag {}.draggable(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag draggable="true"></tag>\
+                       <tag draggable="false"></tag>\
                        <tag draggable="true"></tag>
                        """
         )
@@ -912,11 +1011,15 @@ final class AttributesTests: XCTestCase {
     func testEditableAttribute() throws {
         
         let view = TestView {
-            Tag {}.isEditable(true)
+            Tag {}.editable()
+            Tag {}.editable(false)
+            Tag {}.editable(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag contenteditable="true"></tag>\
+                       <tag contenteditable="false"></tag>\
                        <tag contenteditable="true"></tag>
                        """
         )
@@ -925,7 +1028,7 @@ final class AttributesTests: XCTestCase {
     func testEnterkeyhintAttribute() throws {
         
         let view = TestView {
-            Tag {}.enterKeyHint(.enter)
+            Tag {}.enterKey(.enter)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -997,12 +1100,12 @@ final class AttributesTests: XCTestCase {
     func testRoleAttribute() throws {
         
         let view = TestView {
-            Tag {}.role(.range)
+            Tag {}.role(.alert)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag role="range"></tag>
+                       <tag role="alert"></tag>
                        """
         )
     }
@@ -1010,11 +1113,15 @@ final class AttributesTests: XCTestCase {
     func testHasSpellCheckAttribute() throws {
         
         let view = TestView {
-            Tag {}.hasSpellCheck(true)
+            Tag {}.spellcheck()
+            Tag {}.spellcheck(false)
+            Tag {}.spellcheck(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag spellcheck="true"></tag>\
+                       <tag spellcheck="false"></tag>\
                        <tag spellcheck="true"></tag>
                        """
         )
@@ -1062,11 +1169,15 @@ final class AttributesTests: XCTestCase {
     func testTranslateAttribute() throws {
         
         let view = TestView {
-            Tag {}.translate(.yes)
+            Tag {}.translate()
+            Tag {}.translate(false)
+            Tag {}.translate(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag translate="yes"></tag>\
+                       <tag translate="no"></tag>\
                        <tag translate="yes"></tag>
                        """
         )
@@ -1075,12 +1186,20 @@ final class AttributesTests: XCTestCase {
     func testAcceptAttribute() throws {
         
         let view = TestView {
-            Tag {}.accept("accept")
+            Tag {}.accept("image/*")
+            Tag {}.accept([".jpg", ".png", ".svg"])
+            Tag {}.accept(".jpg", ".png", ".svg")
+            Tag {}.accept([.ogg, .mpeg])
+            Tag {}.accept(.ogg, .mpeg)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag accept="accept"></tag>
+                       <tag accept="image/*"></tag>\
+                       <tag accept=".jpg, .png, .svg"></tag>\
+                       <tag accept=".jpg, .png, .svg"></tag>\
+                       <tag accept="video/ogg, audio/mpeg"></tag>\
+                       <tag accept="video/ogg, audio/mpeg"></tag>
                        """
         )
     }
@@ -1261,19 +1380,6 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testCoordinatesAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.coordinates("255,132,316,150")
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag coords="255,132,316,150"></tag>
-                       """
-        )
-    }
-    
     func testDataAttribute() throws {
         
         let view = TestView {
@@ -1427,12 +1533,16 @@ final class AttributesTests: XCTestCase {
     func testHeadersAttribute() throws {
         
         let view = TestView {
-            Tag {}.headers("name")
+            Tag {}.headers("id")
+            Tag {}.headers("id", "id")
+            Tag {}.headers(["id", "id"])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag headers="name"></tag>
+                       <tag headers="id"></tag>\
+                       <tag headers="id id"></tag>\
+                       <tag headers="id id"></tag>
                        """
         )
     }
@@ -1627,12 +1737,16 @@ final class AttributesTests: XCTestCase {
     func testMediaAttribute() throws {
         
         let view = TestView {
-            Tag {}.media("print and (resolution:300dpi)")
+            Tag {}.media(MediaQuery(.all, features: .orientation(.landscape), .resolution("300dpi")))
+            Tag {}.media(MediaQuery(.all), MediaQuery(.print))
+            Tag {}.media(MediaQuery(.all), MediaQuery(.print, features: [.maxHeight("20vh")]))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag media="print and (resolution:300dpi)"></tag>
+                       <tag media="all and (orientation: landscape) and (resolution: 300dpi)"></tag>\
+                       <tag media="all, print"></tag>\
+                       <tag media="all, print and (max-height: 20vh)"></tag>
                        """
         )
     }
@@ -1735,12 +1849,16 @@ final class AttributesTests: XCTestCase {
     func testIsOpenAttribute() throws {
         
         let view = TestView {
-            Tag {}.isOpen(true)
+            Tag {}.open()
+            Tag {}.open(false)
+            Tag {}.open(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag open="true"></tag>
+                       <tag open="open"></tag>\
+                       <tag></tag>\
+                       <tag open="open"></tag>
                        """
         )
     }
@@ -1997,12 +2115,14 @@ final class AttributesTests: XCTestCase {
     func testShapeAttribute() throws {
         
         let view = TestView {
-            Tag {}.shape(.circle)
+            Tag {}.shape()
+            Tag {}.shape(.circle, coordinates: "255,132,316,150")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag shape="circle"></tag>
+                       <tag shape="default"></tag>\
+                       <tag shape="circle" coords="255,132,316,150"></tag>
                        """
         )
     }
@@ -2023,12 +2143,26 @@ final class AttributesTests: XCTestCase {
     func testSizesAttribute() throws {
         
         let view = TestView {
-            Tag {}.sizes(2)
+            Tag {}.sizes(SizeCandidate("auto"))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.landscape)))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.portrait)))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.landscape), .width("50em")))
+            Tag {}.sizes(SizeCandidate("calc(100vw - 100px)", conditions: .minWidth("50em")))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .maxWidth("50em")))
+            Tag {}.sizes([SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em"))])
+            Tag {}.sizes(SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em")))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag sizes="2"></tag>
+                       <tag sizes="auto"></tag>\
+                       <tag sizes="(orientation: landscape) 100vw"></tag>\
+                       <tag sizes="(orientation: portrait) 100vw"></tag>\
+                       <tag sizes="(orientation: landscape) and (width: 50em) 100vw"></tag>\
+                       <tag sizes="(min-width: 50em) calc(100vw - 100px)"></tag>\
+                       <tag sizes="(max-width: 50em) 100vw"></tag>\
+                       <tag sizes="100vw, (max-width: 50em) 100vw"></tag>\
+                       <tag sizes="100vw, (max-width: 50em) 100vw"></tag>
                        """
         )
     }
@@ -2080,7 +2214,7 @@ final class AttributesTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag srcdoc="<!doctype html><html lang=&quot;de&quot;></html>"></tag>
+                       <tag srcdoc="&lt;!doctype html>&lt;html lang=&quot;de&quot;>&lt;/html>"></tag>
                        """
         )
     }
@@ -2101,12 +2235,20 @@ final class AttributesTests: XCTestCase {
     func testSourceSetAttribute() throws {
         
         let view = TestView {
-            Tag {}.sourceSet("img2.png 100w, img3.png 500w")
+            Tag {}.sourceSet(SourceCandidate("img.webp"))
+            Tag {}.sourceSet(SourceCandidate("img.png", density: 4))
+            Tag {}.sourceSet(SourceCandidate("img.png", density: .ultra))
+            Tag {}.sourceSet(SourceCandidate("img.png", width: 1024))
+            Tag {}.sourceSet(SourceCandidate("img.png", width: 1024), SourceCandidate("img.png", density: .ultra))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag srcset="img2.png 100w, img3.png 500w"></tag>
+                       <tag srcset="img.webp"></tag>\
+                       <tag srcset="img.png 4x"></tag>\
+                       <tag srcset="img.png 3x"></tag>\
+                       <tag srcset="img.png 1024w"></tag>\
+                       <tag srcset="img.png 1024w, img.png 3x"></tag>
                        """
         )
     }
@@ -2278,24 +2420,13 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.popoverTarget("id")
+            Tag {}.popoverTarget("id", action: .hide)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag popovertarget="id"></tag>
-                       """
-        )
-    }
-    
-    func testPopoverActionAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.popoverAction(.toggle)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag popovertargetaction="toggle"></tag>
+                       <tag popovertarget="id"></tag>\
+                       <tag popovertarget="id" popovertargetaction="hide"></tag>
                        """
         )
     }
@@ -2791,24 +2922,13 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.fill("black")
+            Tag {}.fill("black", opacity: 0.5)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag fill="black"></tag>
-                       """
-        )
-    }
-    
-    func testFillOpacityAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.fillOpacity(0.5)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag fill-opacity="0.5"></tag>
+                       <tag fill="black"></tag>\
+                       <tag fill="black" fill-opacity="0.5"></tag>
                        """
         )
     }
@@ -2817,63 +2937,19 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.stroke("black")
+            Tag {}.stroke("black", width: 1)
+            Tag {}.stroke("black", width: 1, opacity: 0.5)
+            Tag {}.stroke("black", width: 1, opacity: 0.5, cap: .butt)
+            Tag {}.stroke("black", width: 1, opacity: 0.5, cap: .butt, join: .round)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag stroke="black"></tag>
-                       """
-        )
-    }
-    
-    func testStrokeWidthAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.strokeWidth(5)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag stroke-width="5"></tag>
-                       """
-        )
-    }
-    
-    func testStrokeOpacityAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.strokeOpacity(1.0)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag stroke-opacity="1.0"></tag>
-                       """
-        )
-    }
-    
-    func testStrokeLineCapAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.strokeLineCap(.round)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag stroke-linecap="round"></tag>
-                       """
-        )
-    }
-    
-    func testStrokeLineJoinAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.strokeLineJoin(.miter)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag stroke-linejoin="miter"></tag>
+                       <tag stroke="black"></tag>\
+                       <tag stroke="black" stroke-width="1"></tag>\
+                       <tag stroke="black" stroke-width="1" stroke-opacity="0.5"></tag>\
+                       <tag stroke="black" stroke-width="1" stroke-opacity="0.5" stroke-linecap="butt"></tag>\
+                       <tag stroke="black" stroke-width="1" stroke-opacity="0.5" stroke-linecap="butt" stroke-linejoin="round"></tag>
                        """
         )
     }
@@ -2891,15 +2967,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testPositionPointAttribute() throws {
+    func testPositionAttribute() throws {
         
         let view = TestView {
-            Tag {}.positionPoint((10,10))
+            Tag {}.position(x: 50, y: 50)
+            Tag {}.position(x: 50.0, y: 50.0)
+            Tag {}.position(UnitPoint(x: 50.0, y: 50.0))
+            Tag {}.position(UnitPoint(x: 50, y: 50, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag x="10" y="10"></tag>
+                       <tag x="50" y="50"></tag>\
+                       <tag x="50.0" y="50.0"></tag>\
+                       <tag x="50.0" y="50.0"></tag>\
+                       <tag x="50%" y="50%"></tag>
                        """
         )
     }
@@ -2907,12 +2989,18 @@ final class AttributesTests: XCTestCase {
     func testRadiusPointAttribute() throws {
         
         let view = TestView {
-            Tag {}.radiusPoint((10,10))
+            Tag {}.radius(x: 10, y: 10)
+            Tag {}.radius(x: 10.0, y: 10.0)
+            Tag {}.radius(UnitPoint(x: 10.0, y: 10.0))
+            Tag {}.radius(UnitPoint(x: 10, y: 10, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag rx="10" ry="10"></tag>
+                       <tag rx="10" ry="10"></tag>\
+                       <tag rx="10.0" ry="10.0"></tag>\
+                       <tag rx="10.0" ry="10.0"></tag>\
+                       <tag rx="10%" ry="10%"></tag>
                        """
         )
     }
@@ -2920,12 +3008,18 @@ final class AttributesTests: XCTestCase {
     func testCenterPointAttribute() throws {
         
         let view = TestView {
-            Tag {}.centerPoint((10,10))
+            Tag {}.center(x: 10, y: 10)
+            Tag {}.center(x: 10.0, y: 10.0)
+            Tag {}.center(UnitPoint(x: 10.0, y: 10.0))
+            Tag {}.center(UnitPoint(x: 10, y: 10, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag cx="10" cy="10"></tag>
+                       <tag cx="10" cy="10"></tag>\
+                       <tag cx="10.0" cy="10.0"></tag>\
+                       <tag cx="10.0" cy="10.0"></tag>\
+                       <tag cx="10%" cy="10%"></tag>
                        """
         )
     }
@@ -2933,12 +3027,14 @@ final class AttributesTests: XCTestCase {
     func testViewBoxAttribute() throws {
         
         let view = TestView {
-            Tag {}.viewBox("0 0 100 100")
+            Tag {}.viewBox(x: 0, y: 0, width: 100, height: 100)
+            Tag {}.viewBox(x: 0, y: 0, width: 100.0, height: 100.0)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag viewbox="0 0 100 100"></tag>
+                       <tag viewbox="0 0 100 100"></tag>\
+                       <tag viewbox="0.0 0.0 100.0 100.0"></tag>
                        """
         )
     }

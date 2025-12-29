@@ -3,7 +3,7 @@ import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
 @_documentation(visibility: internal)
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
 
 /// A type that provides the `accessKey` modifier.
 @_documentation(visibility: internal)
@@ -47,13 +47,52 @@ public protocol AcceptAttribute: Attribute {
     /// ```swift
     /// Input()
     ///     .type(.file)
-    ///     .accept("image/png, image/jpeg")
+    ///     .accept(["image/png", "image/jpeg"])
     /// ```
     ///
-    /// - Parameter value: The file types to pick from.
+    /// - Parameter specifiers: The file types to pick from.
     ///
     /// - Returns: The element
-    func accept(_ value: String) -> Self
+    func accept(_ specifiers: [String]) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept("image/png", "image/jpeg")
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: String...) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept([.ogg, .mpeg])
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: [Values.Media]) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept(.ogg, .mpeg)
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: Values.Media...) -> Self
 }
 
 extension AcceptAttribute where Self: ContentNode {
@@ -641,7 +680,7 @@ extension ContentAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `isEditable` modifier.
+/// A type that provides the `editable` modifier.
 @_documentation(visibility: internal)
 public protocol EditAttribute: Attribute {
     
@@ -651,13 +690,13 @@ public protocol EditAttribute: Attribute {
     /// Blockquote {
     ///     "Lorem ipsum..."
     /// }
-    /// .isEditable(false)
+    /// .editable(false)
     /// ```
     ///
-    /// - Parameter condition: Whether the element should be editable.
+    /// - Parameter value: Whether the element should be editable.
     ///
     /// - Returns: The element
-    func isEditable(_ condition: Bool) -> Self
+    func editable(_ value: Bool) -> Self
 }
 
 extension EditAttribute where Self: ContentNode {
@@ -989,7 +1028,7 @@ extension DownloadAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `isDraggable` modifier.
+/// A type that provides the `draggable` modifier.
 @_documentation(visibility: internal)
 public protocol DragAttribute: Attribute {
  
@@ -999,13 +1038,13 @@ public protocol DragAttribute: Attribute {
     /// Division {
     ///     ...
     /// }
-    /// .isDraggable(false)
+    /// .draggable(false)
     /// ```
     ///
-    /// - Parameter condition: Whether the element should be draggable.
+    /// - Parameter value: Whether the element should be draggable.
     ///
     /// - Returns: The element
-    func isDraggable(_ condition: Bool) -> Self
+    func draggable(_ value: Bool) -> Self
 }
 
 extension DragAttribute where Self: ContentNode {
@@ -1054,32 +1093,32 @@ extension EncodingAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `enterKeyHint` modifier.
+/// A type that provides the `enterKey` modifier.
 @_documentation(visibility: internal)
-public protocol EnterKeyHintAttribute: Attribute {
+public protocol EnterKeyAttribute: Attribute {
     
     /// Change the enter key for the virtual keyboards.
     ///
     /// ```swift
     /// Input()
     ///     .type(.text)
-    ///     .enterKeyHint(.search)
+    ///     .enterKey(.search)
     /// ```
     ///
     /// - Parameter value: The enter key to apply.
     ///
     /// - Returns: The element
-    func enterKeyHint(_ value: Values.Hint) -> Self
+    func enterKey(_ value: Values.Hint) -> Self
 }
 
-extension EnterKeyHintAttribute where Self: ContentNode {
+extension EnterKeyAttribute where Self: ContentNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         return self.mutate(key: "enterkeyhint", value: value)
     }
 }
 
-extension EnterKeyHintAttribute where Self: EmptyNode {
+extension EnterKeyAttribute where Self: EmptyNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         return self.mutate(key: "enterkeyhint", value: value)
@@ -1206,7 +1245,7 @@ public protocol EquivalentAttribute: Attribute {
     func equivalent(_ value: Values.Equivalent) -> Self
 }
 
-extension HeaderAttribute where Self: ContentNode {
+extension EquivalentAttribute where Self: ContentNode {
     
     internal func mutate(httpequiv value: String) -> Self {
         return self.mutate(key: "http-equiv", value: value)
@@ -1222,7 +1261,7 @@ extension EquivalentAttribute where Self: EmptyNode {
 
 /// A type that provides the `headers` modifier.
 @_documentation(visibility: internal)
-public protocol HeaderAttribute: Attribute {
+public protocol HeadersAttribute: Attribute {
     
     /// Specify the header cells for an element.
     ///
@@ -1230,23 +1269,37 @@ public protocol HeaderAttribute: Attribute {
     /// DataCell {
     ///     "Lorem ipsum..."
     /// }
-    /// .headers("ids")
+    /// .headers(["id", "id"])
     /// ```
     ///
     /// - Parameter ids: The identifiers of the cells to associate with.
     ///
     /// - Returns: The element
-    func headers(_ ids: String) -> Self
+    func headers(_ ids: [String]) -> Self
+    
+    /// Specify the header cells for an element.
+    ///
+    /// ```swift
+    /// DataCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .headers("id", "id")
+    /// ```
+    ///
+    /// - Parameter ids: The identifiers of the cells to associate with.
+    ///
+    /// - Returns: The element
+    func headers(_ ids: String...) -> Self
 }
 
-extension HeaderAttribute where Self: ContentNode {
+extension HeadersAttribute where Self: ContentNode {
     
     internal func mutate(headers value: String) -> Self {
         return self.mutate(key: "headers", value: value)
     }
 }
 
-extension HeaderAttribute where Self: EmptyNode {
+extension HeadersAttribute where Self: EmptyNode {
     
     internal func mutate(headers value: String) -> Self {
         return self.mutate(key: "headers", value: value)
@@ -1894,6 +1947,34 @@ public protocol LabelAttribute: Attribute {
     ///
     /// - Returns: The element
     func label(_ value: String) -> Self
+    
+    /// Specify a label for the element.
+    ///
+    /// ```swift
+    /// Track()
+    ///     .source("...vtt")
+    ///     .kind(.chapters)
+    ///     .label("lorem")
+    /// ```
+    ///
+    /// - Parameter localizedString: The localized string.
+    ///
+    /// - Returns: The element
+    func label(_ localizedString: LocalizedString) -> Self
+    
+    /// Specify a label for the element without localization.
+    ///
+    /// ```swift
+    /// Track()
+    ///     .source("...vtt")
+    ///     .kind(.chapters)
+    ///     .label(verbatim: "lorem")
+    /// ```
+    ///
+    /// - Parameter value: The text to use as a label.
+    ///
+    /// - Returns: The element
+    func label(verbatim value: String) -> Self
 }
 
 extension LabelAttribute where Self: ContentNode {
@@ -1901,11 +1982,19 @@ extension LabelAttribute where Self: ContentNode {
     internal func mutate(label value: String) -> Self {
         return self.mutate(key: "label", value: value)
     }
+    
+    internal func mutate(label value: LocalizedString) -> Self {
+        return self.mutate(key: "label", value: value)
+    }
 }
 
 extension LabelAttribute where Self: EmptyNode {
     
     internal func mutate(label value: String) -> Self {
+        return self.mutate(key: "label", value: value)
+    }
+    
+    internal func mutate(label value: LocalizedString) -> Self {
         return self.mutate(key: "label", value: value)
     }
 }
@@ -2113,14 +2202,34 @@ public protocol MediaAttribute: Attribute {
     ///
     /// ```swift
     /// Link()
-    ///     .reference("https://...")
-    ///     .media("print")
+    ///     .reference("...css")
+    ///     .media([
+    ///         MediaQuery(target: .screen, features: .orientation(.portrait)), 
+    ///         MediaQuery(target: .print, features: .resolution("300dpi"))
+    ///     ])
     /// ```
     ///
-    /// - Parameter value: The media to be considered.
+    /// - Parameter queries: The media to be considered.
     ///
     /// - Returns: The element
-    func media(_ value: String) -> Self
+    func media(_ queries: [MediaQuery]) -> Self
+    
+    
+    /// Specify the media the ressource is optimized for.
+    ///
+    /// ```swift
+    /// Link()
+    ///     .reference("...css")
+    ///     .media(
+    ///         MediaQuery(target: .screen, features: .orientation(.portrait)),
+    ///         MediaQuery(target: .print, features: .resolution("300dpi"))
+    ///     )
+    /// ```
+    ///
+    /// - Parameter queries: The media to be considered.
+    ///
+    /// - Returns: The element
+    func media(_ queries: MediaQuery...) -> Self
 }
 
 extension MediaAttribute where Self: ContentNode {
@@ -2393,7 +2502,7 @@ extension NoValidateAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `isOpen` modifier.
+/// A type that provides the `open` modifier.
 @_documentation(visibility: internal)
 public protocol OpenAttribute: Attribute {
     
@@ -2408,25 +2517,25 @@ public protocol OpenAttribute: Attribute {
     ///         "Lorem ipsum..."
     ///     }
     /// }
-    /// .isOpen(true)
+    /// .open(true)
     /// ```
     ///
     /// - Parameter condition: Whether the details should be open.
     ///
     /// - Returns: The element
-    func isOpen(_ condition: Bool) -> Self
+    func open(_ condition: Bool) -> Self
 }
 
 extension OpenAttribute where Self: ContentNode {
     
-    internal func mutate(open value: Bool) -> Self {
+    internal func mutate(open value: String) -> Self {
         return self.mutate(key: "open", value: value)
     }
 }
 
 extension OpenAttribute where Self: EmptyNode {
     
-    internal func mutate(open value: Bool) -> Self {
+    internal func mutate(open value: String) -> Self {
         return self.mutate(key: "open", value: value)
     }
 }
@@ -3077,17 +3186,28 @@ extension ScopeAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol ShapeAttribute: Attribute {
     
+    /// Define the entire area as shape.
+    ///
+    /// ```swift
+    /// Area()
+    ///     .shape()
+    /// ```
+    ///
+    /// - Returns: The element
+    func shape() -> Self
+    
     /// Define the shape for an area.
     ///
     /// ```swift
     /// Area()
-    ///     .shape(.circle)
+    ///     .shape(.rect, coordinates: "0, 0, 200, 100")
     /// ```
     ///
     /// - Parameter value: The shape used to interpret the coordinates.
+    /// - Parameter coordinates: The coordinates on which to base the shape.
     ///
     /// - Returns: The element
-    func shape(_ value: Values.Shape) -> Self
+    func shape(_ value: Values.Shape, coordinates: String) -> Self
 }
 
 extension ShapeAttribute where Self: ContentNode {
@@ -3139,29 +3259,31 @@ extension SizeAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol SizesAttribute: Attribute {
     
+    associatedtype SizesValueType
+    
     /// Describe different sizes for different viewport sizes.
     ///
     /// ```swift
     /// Link()
-    ///     .sizes(16x16)
+    ///     .sizes("16x16", "32x32")
     /// ```
     ///
-    /// - Parameter size: The sizes to take into consideration.
+    /// - Parameter candidates: The sizes to take into consideration.
     ///
     /// - Returns: The element
-    func sizes(_ size: Int) -> Self
+    func sizes(_ candidates: [SizesValueType]) -> Self
 }
 
 extension SizesAttribute where Self: ContentNode {
     
-    internal func mutate(sizes value: Int) -> Self {
+    internal func mutate(sizes value: String) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
 }
 
 extension SizesAttribute where Self: EmptyNode {
     
-    internal func mutate(sizes value: Int) -> Self {
+    internal func mutate(sizes value: String) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
 }
@@ -3237,7 +3359,7 @@ extension SpanAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `hasSpellCheck` modifier.
+/// A type that provides the `spellcheck` modifier.
 @_documentation(visibility: internal)
 public protocol SpellCheckAttribute: Attribute {
  
@@ -3245,13 +3367,13 @@ public protocol SpellCheckAttribute: Attribute {
     ///
     /// ```swift
     /// Input()
-    ///     .hasSpellCheck(false)
+    ///     .spellcheck(false)
     /// ```
     ///
-    /// - Parameter condition: Whether to spellcheck the content.
+    /// - Parameter value: Whether to spellcheck the content.
     ///
     /// - Returns: The element
-    func hasSpellCheck(_ condition: Bool) -> Self
+    func spellcheck(_ value: Bool) -> Self
 }
 
 extension SpellCheckAttribute where Self: ContentNode {
@@ -3484,11 +3606,19 @@ extension StyleAttribute where Self: ContentNode {
     internal func mutate(style value: String) -> Self {
         return self.mutate(key: "style", value: value)
     }
+    
+    internal func mutate(style value: TaintedString) -> Self {
+        return self.mutate(key: "style", value: value)
+    }
 }
 
 extension StyleAttribute where Self: EmptyNode {
     
     internal func mutate(style value: String) -> Self {
+        return self.mutate(key: "style", value: value)
+    }
+    
+    internal func mutate(style value: TaintedString) -> Self {
         return self.mutate(key: "style", value: value)
     }
 }
@@ -3639,13 +3769,13 @@ public protocol TranslateAttribute: Attribute {
     /// Paragraph {
     ///     "Lorem ipsum..."
     /// }
-    /// .translate(.no)
+    /// .translate(true)
     /// ```
     ///
     /// - Parameter value: Whether to exclude the content from translation.
     ///
     /// - Returns: The element
-    func translate(_ value: Values.Decision) -> Self
+    func translate(_ value: Bool) -> Self
 }
 
 extension TranslateAttribute where Self: ContentNode {
@@ -3707,8 +3837,7 @@ public protocol UseMapAttribute: Attribute {
     ///     .useMap("...")
     /// Map {
     ///     Area()
-    ///         .shape(.circle)
-    ///         .coordinates(...)
+    ///         .shape(.circle, coordinates: "...")
     /// }
     /// .name("...")
     /// ```
@@ -4054,21 +4183,33 @@ extension LoadingAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol SourceSetAttribute: Attribute {
     
-    /// Set a source set for a picture element.
+    /// Define a set of sources for a picture element.
     ///
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet("https://...")
-    ///     Source()
-    ///         .sourceSet("https://...")
+    ///         .sourceSet([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
     /// }
     /// ```
     ///
-    /// - Parameter url: The url path to load from.
+    /// - Parameter candidates: The candidates to choose from.
     ///
     /// - Returns: The element.
-    func sourceSet(_ url: String) -> Self
+    func sourceSet(_ candidates: [SourceCandidate]) -> Self
+    
+    /// Define a set of sources for a picture element.
+    ///
+    /// ```swift
+    /// Picture {
+    ///     Source()
+    ///         .sourceSet(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
+    /// }
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to choose from.
+    ///
+    /// - Returns: The element.
+    func sourceSet(_ candidates: SourceCandidate...) -> Self
 }
 
 extension SourceSetAttribute where Self: ContentNode {
@@ -4197,13 +4338,14 @@ public protocol PopoverTargetAttribute: Attribute {
     /// Button {
     ///     "Lorem ipsum"
     /// }
-    /// .popoverTarget("id")
+    /// .popoverTarget("id", action: .hide)
     /// ```
     ///
     /// - Parameter id: The identifier of the target to bind the popover to.
+    /// - Parameter action: The action to perform when triggered.
     ///
     /// - Returns: The element
-    func popoverTarget(_ id: String) -> Self
+    func popoverTarget(_ id: String, action: Values.Popover.Action?) -> Self
 }
 
 extension PopoverTargetAttribute where Self: ContentNode {
@@ -4211,12 +4353,30 @@ extension PopoverTargetAttribute where Self: ContentNode {
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
     }
+    
+    internal func mutate(popovertargetaction value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "popovertargetaction", value: value)
+        }
+        
+        return self
+    }
 }
 
 extension PopoverTargetAttribute where Self: EmptyNode {
     
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
+    }
+    
+    internal func mutate(popovertargetaction value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "popovertargetaction", value: value)
+        }
+        
+        return self
     }
 }
 

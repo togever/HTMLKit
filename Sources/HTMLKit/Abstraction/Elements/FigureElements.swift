@@ -76,7 +76,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> FigureCaption {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> FigureCaption {
         return mutate(contenteditable: value)
     }
 
@@ -84,11 +89,21 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> FigureCaption {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> FigureCaption {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> FigureCaption {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> FigureCaption {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -101,7 +116,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> FigureCaption {
         return mutate(inputmode: value)
     }
@@ -162,12 +177,17 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> FigureCaption {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> FigureCaption {
         return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> FigureCaption {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func tabIndex(_ value: Int) -> FigureCaption {
@@ -187,8 +207,18 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> FigureCaption {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> FigureCaption {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> FigureCaption {
@@ -209,23 +239,23 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     }
     
     public func on(event: Events.Drag, _ value: String) -> FigureCaption {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> FigureCaption {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> FigureCaption {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> FigureCaption {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> FigureCaption {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func aria(atomic value: Bool) -> FigureCaption {
